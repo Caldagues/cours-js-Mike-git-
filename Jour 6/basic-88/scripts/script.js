@@ -94,3 +94,53 @@ for (let i = 0; i < imgHtml.length; i++) {
         imgHtml[i].src = imgChange[i];
     });
 }
+
+/******************* EXERCICE 4 ***********************/
+
+let readMore = document.querySelectorAll(".more a")[0];
+const SAVED_PARAGRAPH = document.querySelectorAll("figcaption p")[0].innerHTML; // ici on récupère en statique le texte de la balise p
+let paragraph = document.querySelectorAll("figcaption p")[0]; // ici mon paragraph dynamique
+
+console.log(readMore);
+console.log(paragraph);
+
+readMore.addEventListener("click", function() {
+    event.preventDefault(); // sert à neutraliser l'événement par défaut de la balise a
+    if (readMore.innerHTML == "Read More »") {
+        paragraph.innerHTML += "Ceci est rajouté wouhou !!!!",
+            readMore.innerHTML = "Read Less &raquo;";
+    } else {
+        readMore.innerHTML = "Read More &raquo;"; // le if permet de rafficher read more / read less
+        paragraph.innerHTML = SAVED_PARAGRAPH;
+    }
+});
+
+/************************ création d'objet - on peut mettre des propriétés, des fonctions, des nombres, des tableaux etc TOUJOURS avec deux points (car on est en Json) ******************************/
+let personne = {
+    nom: "CALDAGUES",
+    prenom: "Antoine",
+    dateNaiss: "31 december 1992",
+    children: [{
+            nom: "CALDAGUES",
+            prenom: "Tom",
+            dateNaiss: "31 december 2000",
+            children: [],
+        },
+        {
+            nom: "CALDAGUES",
+            prenom: "Louise",
+            dateNaiss: "31 december 2000",
+            children: [],
+        }
+    ],
+    age: function() {
+        let anniversaire = new Date(this.dateNaiss); // par défaut, lorsqu'on appelle l'objet date c'est la date actuelle. Donc new permet de jouer avec l'objet et lui attribuer une nouvelle date
+        return new Number((new Date().getTime() - anniversaire.getTime()) / 31536000000).toFixed(0)
+            /* return pour rappeler la fonction 
+             ** getTime -> renvoie le temps en millisecondes
+             ** 
+             */
+
+
+    }
+}
